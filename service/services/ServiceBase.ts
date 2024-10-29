@@ -22,10 +22,10 @@ export default class ServiceBase {
     // 创建一个mysql连接池
     static pool = mysql.createPool({
         port: 3306,
-        host: utils.isProd ? "localhost" : '47.108.147.37',
+        host: utils.isProd ? "localhost" : '',
         database: utils.isProd ? 'test-database' : 'test-database',
-        user: utils.isProd ? 'test-database' : 'test-database',
-        password: utils.isProd ? 'test-database' : 'test-database',
+        user: utils.isProd ? '' : '',
+        password: utils.isProd ? '' : '',
     });
     
     //创建一个判空的中间件
