@@ -10,6 +10,8 @@ import { Route, Routes, unstable_HistoryRouter as Router } from 'react-router-do
 import './index.css';
 import 'antd-mobile/es/global';
 import loadable from "@loadable/component";
+import { Suspense } from 'react';
+import { Spin } from 'antd';
 
 const Home = loadable(() => import("./views/home/Home"));
 
@@ -17,9 +19,11 @@ const Root = window.Root || (window.Root = ReactDOM.createRoot(document.getEleme
 
 Root.render(
     <Router history={hashHistory} >
-        <Routes>
-            <Route path="/" element={<Home />} />
-        </Routes>
+        <Suspense fallback={<Spin size="large" />}>
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </Suspense>
     </Router>
 );
 

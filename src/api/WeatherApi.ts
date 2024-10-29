@@ -2,7 +2,7 @@ import Api from './Api';
 
 class WeatherApi extends Api {
     get_weather(params: any) {
-        return this._get('/api/get_weather', params)
+        return this._get('/get_weather', params)
     }
 }
 

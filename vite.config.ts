@@ -108,9 +108,8 @@ export default async ({ mode }) => {
         server: {
             proxy: {
                 '/api': {
-                    target: 'http://jsonplaceholder.typicode.com',
-                    changeOrigin: true,
-                    rewrite: (path) => path.replace(/^\/api/, '')
+                    target: 'http://localhost:9001',
+                    changeOrigin: true
                 },
             }
         }

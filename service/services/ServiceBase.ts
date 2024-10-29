@@ -27,33 +27,24 @@ export default class ServiceBase {
         user: utils.isProd ? 'test-database' : 'test-database',
         password: utils.isProd ? 'test-database' : 'test-database',
     });
-
-    // parallel processing 并行处理
-    // 暴露一个函数，函数接收验证规则，返回一个函数
-    validate(validations: Array<ValidationChain>) {
-        return async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-            await Promise.all(validations.map((validation) => validation.run(req)));
-            const errors = validationResult(req);
-            if (errors.isEmpty()) {
-                return next();
-            }
-
-            next({
-                message: errors.array()[0].msg,
-                code: 500
-            })
-
-        };
-    }
-
     
     //创建一个判空的中间件
+    //创建一个判空的中间件
     paramNotEmpty(params: Array<string>) {
-        return this.validate(
-            params.map(p => {
-                return body(p).notEmpty().withMessage(`${p}不能为空`)
-            })
-        );
+        return async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+            const emptyParam = [];
+            for (let p of params) {
+                if (isEmpty(req.query[p]) && isEmpty(req.body[p])) {
+                    // 记录空参数
+                    emptyParam.push(p);
+                }
+            }
+            if (isEmpty(emptyParam)) {
+                next();
+            } else {
+                this.error(res, `${emptyParam.join(',')}不能为空`);
+            }
+        };
     }
 
     // 返回成功的状态

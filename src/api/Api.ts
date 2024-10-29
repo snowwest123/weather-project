@@ -36,7 +36,6 @@ export default class Api {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            // withCredentials: true
         });
     }
 
@@ -55,9 +54,9 @@ export default class Api {
         return axios.create({
             baseURL: utils.isDev ? this.devBaseURL : this.baseURL,
             timeout: this.timeout,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            // headers: {
+            //     'Content-Type': 'application/x-www-form-urlencoded'
+            // },
             withCredentials: this.withCredentials,
         }).get(url, { params });
     }
