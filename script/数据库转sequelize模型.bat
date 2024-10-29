@@ -1,0 +1,1 @@
+sequelize-auto -h 47.108.147.37 -d to_usdz -u to_usdz -x G5yr5A3r3bPiteWB -p 3306 --dialect mysql -o "./models"

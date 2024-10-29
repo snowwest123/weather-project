@@ -1,0 +1,23 @@
+项目文档
+项目使用用到的 技术: 
+
+1.前端框架     react
+2.状态管理器   mobx
+3.项目编译器   vite
+
+项目运行的环境  
+1.操作系统  window10
+2.开发环境  node.js >= 14.8.0
+
+项目启动步骤
+1. 安装依赖包  npm i
+2. 启动项目    npm run dev
+3. 浏览器访问  localhost:5173
+
+
+项目编译并生成dist 文件夹
+1.编译代码   npm run build
+
+
+项目预览
+1.预览dist目录   npm run preview
