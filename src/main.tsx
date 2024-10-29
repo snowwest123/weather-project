@@ -12,19 +12,23 @@ import 'antd-mobile/es/global';
 import loadable from "@loadable/component";
 import { Suspense } from 'react';
 import { Spin } from 'antd';
+import LoadingWapper from '@components/LoadingWapper';
 
 const Home = loadable(() => import("./views/home/Home"));
 
 const Root = window.Root || (window.Root = ReactDOM.createRoot(document.getElementById('root')!));
 
 Root.render(
-    <Router history={hashHistory} >
-        <Suspense fallback={<Spin size="large" />}>
-            <Routes>
-                <Route path="/" element={<Home />} />
-            </Routes>
-        </Suspense>
-    </Router>
+    <LoadingWapper >
+        <Router history={hashHistory} >
+                <Suspense fallback={<Spin size="large" />}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </Suspense>
+        </Router>
+    </LoadingWapper>
+
 );
 
 //@ts-ignore
